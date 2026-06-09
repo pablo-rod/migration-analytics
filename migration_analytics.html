@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="pt-PT" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Migration Analytics - Dashboard Estratégico</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Barras de rolagem personalizadas */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- CABEÇALHO PRINCIPAL -->
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="p-2.5 bg-brand-500/10 text-brand-500 rounded-xl border border-brand-500/20">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">MA // MIGRATION ANALYTICS</h1>
+                    <p class="text-xs text-slate-400 font-mono">ESTRATÉGIA DE REALOCAÇÃO GLOBAL 2026</p>
+                </div>
+            </div>
+            
+            <!-- Indicadores Rápidos do Perfil -->
+            <div class="flex flex-wrap items-center gap-2 sm:gap-3 text-xs">
+                <span class="px-2.5 py-1 bg-slate-800 rounded-lg border border-slate-700/60 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+                    TI (Sem Diploma)
+                </span>
+                <span class="px-2.5 py-1 bg-slate-800 rounded-lg border border-slate-700/60 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    Inglês C1
+                </span>
+                <span class="px-2.5 py-1 bg-slate-800 rounded-lg border border-slate-700/60 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                    Casal (Sponsorship)
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTAINER DE CONTEÚDO PRINCIPAL -->
+    <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+        <!-- NOTIFICAÇÃO / ALERTA DE ESTRATÉGIA -->
+        <div class="bg-gradient-to-r from-brand-900/30 via-slate-900 to-slate-900 border border-brand-500/30 rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div class="space-y-1">
+                <div class="flex items-center gap-2">
+                    <span class="px-2 py-0.5 text-[10px] tracking-wider uppercase font-extrabold bg-brand-500 text-white rounded">Foco 2026</span>
+                    <h3 class="text-base font-semibold">Plano Principal: Irlanda (General Employment Permit)</h3>
+                </div>
+                <p class="text-sm text-slate-400 max-w-3xl">
+                    Com base no seu perfil técnico atual (suporte/infraestrutura), inglês avançado e sem diploma concluído no momento, a Irlanda apresenta-se como o caminho mais rápido e menos burocrático para obter um visto patrocinado antes da residência permanente.
+                </p>
+            </div>
+            <a href="#action-planner" class="px-4 py-2 bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold rounded-xl shadow-lg shadow-brand-600/10 hover:shadow-brand-500/20 transition-all shrink-0">
+                Ver Plano de Ação
+            </a>
+        </div>
+
+        <!-- QUADRO DE MEDIDAS KPI (Resumo Superior) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- Card 1 -->
+            <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-2xl relative overflow-hidden group hover:border-slate-700 transition-all">
+                <div class="absolute -right-4 -bottom-4 text-slate-800/20 group-hover:text-slate-800/40 transition-colors pointer-events-none">
+                    <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12 1.586l-4 4v12.828l4-4V1.586zM3.707 3.293A1 1 0 002 4v10a1 1 0 00.293.707L6 18.414V5.586L3.707 3.293zM17.707 5.293L14 1.586v12.828l2.293 2.293A1 1 0 0018 16V6a1 1 0 00-.293-.707z" clip-rule="evenodd"></path></svg>
+                </div>
+                <div class="text-xs text-slate-400 font-mono uppercase">Recomendado nº 1</div>
+                <div class="text-2xl font-black text-emerald-400 mt-1 flex items-center gap-2">
+                    Irlanda
+                    <span class="text-xs font-normal text-slate-400">1º Lugar</span>
+                </div>
+                <p class="text-xs text-slate-400 mt-2">Burocracia de apenas 3/10. Entrada ágil no suporte de TI.</p>
+            </div>
+            <!-- Card 2 -->
+            <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-2xl relative overflow-hidden group hover:border-slate-700 transition-all">
+                <div class="absolute -right-4 -bottom-4 text-slate-800/20 group-hover:text-slate-800/40 transition-colors pointer-events-none">
+                    <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 20 20"><path d="M8.433 7.418c.554-.589 1.448-.589 2.002 0l.207.22 1.258-1.422-.207-.22a3.877 3.877 0 00-5.464 0l-.2.213L7.29 7.63l.2-.212zm1.611 1.63a1.448 1.448 0 00-2.002 0l-.207.22L6.577 7.846l.207-.22a3.877 3.877 0 005.464 0l.2-.213 1.257 1.42-.2.213z"></path><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path></svg>
+                </div>
+                <div class="text-xs text-slate-400 font-mono uppercase">Meta de Candidaturas</div>
+                <div class="text-2xl font-black text-brand-500 mt-1">125 / sem</div>
+                <p class="text-xs text-slate-400 mt-2">Meta diária distribuída entre os 4 países alvo.</p>
+            </div>
+            <!-- Card 3 -->
+            <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-2xl relative overflow-hidden group hover:border-slate-700 transition-all">
+                <div class="absolute -right-4 -bottom-4 text-slate-800/20 group-hover:text-slate-800/40 transition-colors pointer-events-none">
+                    <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 20 20"><path d="M8.433 7.418c.554-.589 1.448-.589 2.002 0l.207.22 1.258-1.422-.207-.22a3.877 3.877 0 00-5.464 0l-.2.213L7.29 7.63l.2-.212zm1.611 1.63a1.448 1.448 0 00-2.002 0l-.207.22L6.577 7.846l.207-.22a3.877 3.877 0 005.464 0l.2-.213 1.257 1.42-.2.213z"></path><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path></svg>
+                </div>
+                <div class="text-xs text-slate-400 font-mono uppercase">Reserva Recomendada Mínima</div>
+                <div class="text-2xl font-black text-slate-100 mt-1" id="kpi-reserva-range">€10K - NZ$25K</div>
+                <p class="text-xs text-slate-400 mt-2">Valores base de imigração realistas por destino.</p>
+            </div>
+            <!-- Card 4 -->
+            <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-2xl relative overflow-hidden group hover:border-slate-700 transition-all">
+                <div class="absolute -right-4 -bottom-4 text-slate-800/20 group-hover:text-slate-800/40 transition-colors pointer-events-none">
+                    <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path></svg>
+                </div>
+                <div class="text-xs text-slate-400 font-mono uppercase">Certificações Prioritárias</div>
+                <div class="text-2xl font-black text-amber-500 mt-1">M365 &amp; Cloud</div>
+                <p class="text-xs text-slate-400 mt-2">MS-900 e AZ-900 aceleram a triagem técnica de currículos.</p>
+            </div>
+        </div>
+
+        <!-- COLUNAS DO LAYOUT PRINCIPAL -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- COLUNA ESQUERDA: DOSSIÊ DETALHADO POR PAÍS -->
+            <div class="lg:col-span-2 space-y-6">
+                
+                <!-- SISTEMA DE ABAS PARA O DOSSIÊ -->
+                <div class="bg-slate-900/60 border border-slate-800 rounded-3xl overflow-hidden">
+                    <div class="p-4 sm:p-6 border-b border-slate-800 bg-slate-900/80">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                            <div>
+                                <h2 class="text-lg font-bold">Dossiê Estratégico por País</h2>
+                                <p class="text-xs text-slate-400">Navegue pelas rotas personalizadas com base no seu cenário específico</p>
+                            </div>
+                            <!-- Seletores de Aba -->
+                            <div class="flex flex-wrap gap-1 bg-slate-950 p-1 rounded-xl border border-slate-800">
+                                <button onclick="switchTab('irlanda')" id="tab-irlanda" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                                    🇮🇪 Irlanda
+                                </button>
+                                <button onclick="switchTab('nz')" id="tab-nz" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                                    🇳🇿 N. Zelândia
+                                </button>
+                                <button onclick="switchTab('australia')" id="tab-australia" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                                    🇦🇺 Austrália
+                                </button>
+                                <button onclick="switchTab('canada')" id="tab-canada" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                                    🇨🇦 Canadá
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CONTEÚDO DAS ABAS -->
+                    <div class="p-4 sm:p-6">
+                        
+                        <!-- ABA IRLANDA -->
+                        <div id="content-irlanda" class="tab-content space-y-6">
+                            <div class="flex flex-col sm:flex-row justify-between items-start gap-4 pb-4 border-b border-slate-800/60">
+                                <div class="space-y-1">
+                                    <span class="px-2 py-0.5 text-[10px] uppercase font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded">Melhor Estratégia Atual</span>
+                                    <h3 class="text-xl font-black flex items-center gap-2">🇮🇪 IRLANDA <span class="text-sm font-normal text-slate-400">| Score 8.7/10</span></h3>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs text-slate-400">Burocracia:</span>
+                                    <span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 text-xs font-bold rounded-lg border border-emerald-500/20">3 / 10 (Simples)</span>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="space-y-3">
+                                    <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400">Vistos Sugeridos</h4>
+                                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-2">
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-sm font-bold text-white">General Employment Permit</span>
+                                            <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded uppercase font-bold">Foco Principal</span>
+                                        </div>
+                                        <p class="text-xs text-slate-400">Ideal para cargos de suporte inicial de TI. Permite entrada rápida no ecossistema de tecnologia irlandês.</p>
+                                    </div>
+                                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1">
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-xs font-bold text-slate-300">Critical Skills Employment Permit</span>
+                                            <span class="text-[10px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded uppercase">Futuro</span>
+                                        </div>
+                                        <p class="text-xs text-slate-400">Evolução de carreira natural para funções de Cloud/SysAdmin sénior.</p>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-3">
+                                    <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400">Cronograma do Processo</h4>
+                                    <div class="relative pl-6 border-l-2 border-slate-800 space-y-4 text-xs">
+                                        <div class="relative">
+                                            <span class="absolute -left-[31px] top-0.5 w-4 h-4 rounded-full border-2 border-slate-800 bg-slate-950 flex items-center justify-center text-[9px] font-bold text-slate-400">1</span>
+                                            <div class="font-bold text-white">Vaga &amp; Sponsorship</div>
+                                            <p class="text-slate-400">Tempo variável, com base na consistência de 20-30 aplicações diárias.</p>
+                                        </div>
+                                        <div class="relative">
+                                            <span class="absolute -left-[31px] top-0.5 w-4 h-4 rounded-full border-2 border-emerald-500 bg-slate-950 flex items-center justify-center text-[9px] font-bold text-emerald-400">2</span>
+                                            <div class="font-bold text-white">Emissão do Visto: 1 a 3 meses</div>
+                                            <p class="text-slate-400">Após proposta oficial assinada, governo processa em tempo recorde.</p>
+                                        </div>
+                                        <div class="relative">
+                                            <span class="absolute -left-[31px] top-0.5 w-4 h-4 rounded-full border-2 border-slate-800 bg-slate-950 flex items-center justify-center text-[9px] font-bold text-slate-400">3</span>
+                                            <div class="font-bold text-white">Logística &amp; Mudança: 3 a 6 meses</div>
+                                            <p class="text-slate-400">Organização das passagens, moradia inicial temporária e onboarding.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+                                <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400">Estratégia de Carreira em Três Fases</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                                    <div class="bg-slate-900 p-3 rounded-lg border border-slate-800/60">
+                                        <span class="text-[10px] font-bold text-emerald-400 uppercase">Fase 1: Entrada rápida</span>
+                                        <h5 class="font-bold text-white mt-1">Suporte Técnico Inicial</h5>
+                                        <p class="text-slate-400 mt-1">Cargos de IT Support, Service Desk ou Tech Support Engineer.</p>
+                                    </div>
+                                    <div class="bg-slate-900 p-3 rounded-lg border border-slate-800/60">
+                                        <span class="text-[10px] font-bold text-emerald-400 uppercase">Fase 2: Especialização</span>
+                                        <h5 class="font-bold text-white mt-1">Cloud &amp; Microsoft 365</h5>
+                                        <p class="text-slate-400 mt-1">Foco em Azure, Exchange Online e Administração de Sistemas.</p>
+                                    </div>
+                                    <div class="bg-slate-900 p-3 rounded-lg border border-slate-800/60">
+                                        <span class="text-[10px] font-bold text-emerald-400 uppercase">Fase 3: Permanência</span>
+                                        <h5 class="font-bold text-white mt-1">Critical Skills &amp; PR</h5>
+                                        <p class="text-slate-400 mt-1">Conversão para visto definitivo e aplicação para residência permanente.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ABA NOVA ZELÂNDIA -->
+                        <div id="content-nz" class="tab-content hidden space-y-6">
+                            <div class="flex flex-col sm:flex-row justify-between items-start gap-4 pb-4 border-b border-slate-800/60">
+                                <div class="space-y-1">
+                                    <span class="px-2 py-0.5 text-[10px] uppercase font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded">O Mais Subestimado</span>
+                                    <h3 class="text-xl font-black flex items-center gap-2">🇳🇿 NOVA ZELÂNDIA <span class="text-sm font-normal text-slate-400">| Score 7.3/10</span></h3>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs text-slate-400">Burocracia:</span>
+                                    <span class="px-2.5 py-1 bg-blue-500/10 text-blue-400 text-xs font-bold rounded-lg border border-blue-500/20">5 / 10 (Moderada)</span>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="space-y-3">
+                                    <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400">Vistos Sugeridos</h4>
+                                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-2">
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-sm font-bold text-white">Accredited Employer Work Visa</span>
+                                            <span class="text-[10px] bg-blue-500/20 text-blue-400 px-1.5 py-0.5 rounded uppercase font-bold">Principal rota</span>
+                                        </div>
+                                        <p class="text-xs text-slate-400">Vínculo com empregadores credenciados. A sua esposa poderá obter visto de trabalho atrelado.</p>
+                                    </div>
+                                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1">
+                                        <span class="text-xs font-bold text-slate-300">Skilled Migrant Category</span>
+                                        <p class="text-xs text-slate-400">Caminho de pontuação futuro para obtenção de residência de longo prazo.</p>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-3">
+                                    <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400">Prazos pós-contratação</h4>
+                                    <ul class="space-y-2 text-xs text-slate-300">
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-blue-400 mt-0.5">✔</span>
+                                            <div><strong>Work Visa:</strong> Cerca de 1 a 3 meses para aprovação pós-oferta.</div>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-blue-400 mt-0.5">✔</span>
+                                            <div><strong>Residência:</strong> Cerca de 2 a 5 meses após elegibilidade inicial recente.</div>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-blue-400 mt-0.5">✔</span>
+                                            <div><strong>Visto de parceira:</strong> Elegível para visto de trabalho associado em muitas condições.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ABA AUSTRÁLIA -->
+                        <div id="content-australia" class="tab-content hidden space-y-6">
+                            <div class="flex flex-col sm:flex-row justify-between items-start gap-4 pb-4 border-b border-slate-800/60">
+                                <div class="space-y-1">
+                                    <span class="px-2 py-0.5 text-[10px] uppercase font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded">Maior Retorno Financeiro</span>
+                                    <h3 class="text-xl font-black flex items-center gap-2">🇦🇺 AUSTRÁLIA <span class="text-sm font-normal text-slate-400">| Score 5.3/10</span></h3>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs text-slate-400">Burocracia:</span>
+                                    <span class="px-2.5 py-1 bg-red-500/10 text-red-400 text-xs font-bold rounded-lg border border-red-500/20">8 / 10 (Alta)</span>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="space-y-3">
+                                    <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400">Rotas de Visto</h4>
+                                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-2">
+                                        <div class="font-bold text-white text-sm">Skills in Demand Visa (TSS 482)</div>
+                                        <p class="text-xs text-slate-400">Patrocínio corporativo direto por empresas autorizadas no governo.</p>
+                                    </div>
+                                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-2">
+                                        <div class="font-bold text-slate-300 text-xs">Vistos Nominados/Independentes (189 / 190)</div>
+                                        <p class="text-xs text-slate-400">Pontuação concorrente. Exigem validação detalhada de experiência profissional.</p>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-3">
+                                    <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400">Desafios Adicionais</h4>
+                                    <p class="text-xs text-slate-400">
+                                        A validação de competências australiana (ACS) é rigorosa com quem não possui diploma de bacharel na área de TI. Por isso, a Austrália exige que você ganhe experiência prática substancial no Brasil e obtenha certificações internacionais de renome antes de se tornar um candidato viável para o patrocínio corporativo direto.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ABA CANADÁ -->
+                        <div id="content-canada" class="tab-content hidden space-y-6">
+                            <div class="flex flex-col sm:flex-row justify-between items-start gap-4 pb-4 border-b border-slate-800/60">
+                                <div class="space-y-1">
+                                    <span class="px-2 py-0.5 text-[10px] uppercase font-bold bg-slate-800 text-slate-400 rounded">Melhor Estrutura Migratória</span>
+                                    <h3 class="text-xl font-black flex items-center gap-2">🇨🇦 CANADÁ <span class="text-sm font-normal text-slate-400">| Score 6.3/10</span></h3>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs text-slate-400">Burocracia:</span>
+                                    <span class="px-2.5 py-1 bg-amber-500/10 text-amber-400 text-xs font-bold rounded-lg border border-amber-500/20">6 / 10 (Moderada)</span>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="space-y-3">
+                                    <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400">Programas de Destaque</h4>
+                                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-2">
+                                        <div class="font-bold text-white text-sm">Express Entry / Provincial Nominee Program (PNP)</div>
+                                        <p class="text-xs text-slate-400">Excelente se houvesse diploma concluído. Sem bacharelado, o funil do sistema de pontuação geral exige atenção redobrada.</p>
+                                    </div>
+                                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1">
+                                        <div class="font-bold text-slate-300 text-xs">Atlantic Immigration Program (AIP)</div>
+                                        <p class="text-xs text-slate-400">Vagas e patrocinadores simplificados em províncias de menor densidade.</p>
+                                    </div>
+                                </div>
+
+                                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
+                                    <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400">Análise Realista do Especialista</h4>
+                                    <p class="text-xs text-slate-400">
+                                        No seu perfil atual (suporte de TI, sem bacharelado internacional concluído e sem experiência em solo canadense), apostar apenas no sistema de pontuação é arriscado. A rota ideal para o Canadá é focar estritamente em ofertas de emprego com <strong>LMIA pré-aprovado</strong> para driblar o funil de pontos tradicionais.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- TABELA COMPARATIVA DE MATRIZ DE DECISÃO -->
+                <div class="bg-slate-900/60 border border-slate-800 rounded-3xl p-4 sm:p-6 space-y-4">
+                    <div>
+                        <h3 class="text-base font-bold">Matriz de Decisão &amp; Probabilidade</h3>
+                        <p class="text-xs text-slate-400">Comparação fria das métricas focando no seu cenário atual de casal</p>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="border-b border-slate-800 text-slate-400 font-mono">
+                                    <th class="py-3 px-4">País</th>
+                                    <th class="py-3 px-4 text-center">Chance de Sponsor</th>
+                                    <th class="py-3 px-4 text-center">Custo Relativo</th>
+                                    <th class="py-3 px-4 text-center">Facilidade de Entrada</th>
+                                    <th class="py-3 px-4 text-right">Avaliação Final</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800/40">
+                                <tr class="hover:bg-slate-900/40 transition-colors">
+                                    <td class="py-3 px-4 font-bold flex items-center gap-2">
+                                        <span class="text-base">🥇 🇮🇪</span> Irlanda
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <span class="px-2 py-0.5 bg-emerald-500/10 text-emerald-400 rounded-full font-bold">10/10</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <span class="px-2 py-0.5 bg-slate-800 text-slate-300 rounded-full">7/10</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <span class="px-2 py-0.5 bg-emerald-500/10 text-emerald-400 rounded-full font-bold">9/10</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-right font-bold text-emerald-400">Recomendado A</td>
+                                </tr>
+                                <tr class="hover:bg-slate-900/40 transition-colors">
+                                    <td class="py-3 px-4 font-bold flex items-center gap-2">
+                                        <span class="text-base">🥈 🇳🇿</span> Nova Zelândia
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <span class="px-2 py-0.5 bg-blue-500/10 text-blue-400 rounded-full font-bold">8/10</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <span class="px-2 py-0.5 bg-slate-800 text-slate-300 rounded-full">6/10</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <span class="px-2 py-0.5 bg-blue-500/10 text-blue-400 rounded-full font-bold">8/10</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-right font-bold text-blue-400">Plano Alternativo B</td>
+                                </tr>
+                                <tr class="hover:bg-slate-900/40 transition-colors">
+                                    <td class="py-3 px-4 font-bold flex items-center gap-2">
+                                        <span class="text-base">🥉 🇦🇺</span> Austrália
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <span class="px-2 py-0.5 bg-blue-500/10 text-blue-400 rounded-full font-bold">8/10</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <span class="px-2 py-0.5 bg-red-500/10 text-red-400 rounded-full">4/10</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <span class="px-2 py-0.5 bg-red-500/10 text-red-400 rounded-full">4/10</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-right font-bold text-amber-500">Médio Prazo C</td>
+                                </tr>
+                                <tr class="hover:bg-slate-900/40 transition-colors">
+                                    <td class="py-3 px-4 font-bold flex items-center gap-2">
+                                        <span class="text-base">4️⃣ 🇨🇦</span> Canadá
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <span class="px-2 py-0.5 bg-slate-800 text-slate-400 rounded-full">7/10</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <span class="px-2 py-0.5 bg-slate-800 text-slate-300 rounded-full">6/10</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <span class="px-2 py-0.5 bg-slate-800 text-slate-300 rounded-full">6/10</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-right font-bold text-slate-400">Longo Prazo D</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- COLUNA DIREITA: CALCULADORA DE CUSTOS & RASTREADOR DE CANDIDATURAS -->
+            <div class="space-y-6">
+                
+                <!-- CALCULADORA DE CUSTOS INTERATIVA (AJUSTADA) -->
+                <div class="bg-slate-900/60 border border-slate-800 rounded-3xl p-4 sm:p-6 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h3 class="text-base font-bold">Calculadora de Custos</h3>
+                            <p class="text-xs text-slate-400">Com base nos limites mínimos informados</p>
+                        </div>
+                        <svg class="w-5 h-5 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div>
+                            <label for="country-selector" class="text-xs font-mono uppercase tracking-wider text-slate-400 block mb-1.5">Selecione o Destino</label>
+                            <select id="country-selector" onchange="updateCalculator()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs focus:ring-1 focus:ring-brand-500 focus:outline-none text-slate-200">
+                                <option value="irlanda">🇮🇪 Irlanda (Mínimo: €10.000)</option>
+                                <option value="nz">🇳🇿 Nova Zelândia (Mínimo: NZD 25.000)</option>
+                                <option value="australia">🇦🇺 Austrália (Mínimo: AUD 30.000)</option>
+                                <option value="canada">🇨🇦 Canadá (Mínimo: CAD 20.000)</option>
+                            </select>
+                        </div>
+
+                        <!-- Buffer da Margem de Emergência -->
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-slate-400 font-medium">Margem de Emergência</span>
+                                <span id="buffer-val" class="font-mono text-brand-500 font-bold">+15%</span>
+                            </div>
+                            <input type="range" id="buffer-slider" min="0" max="50" value="15" step="5" oninput="updateCalculator()" class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-brand-500">
+                        </div>
+
+                        <!-- Itens do Orçamento -->
+                        <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-2 text-xs">
+                            <div class="flex justify-between border-b border-slate-800/60 pb-1.5">
+                                <span class="text-slate-400">Taxas &amp; Vistos</span>
+                                <span id="cost-vistos" class="font-mono font-bold text-white">€1.300</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-800/60 pb-1.5">
+                                <span class="text-slate-400">Passagens (Casal)</span>
+                                <span id="cost-passagens" class="font-mono font-bold text-white">€1.000</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-800/60 pb-1.5">
+                                <span class="text-slate-400">Instalação &amp; Arrendamento</span>
+                                <span id="cost-instalacao" class="font-mono font-bold text-white">€3.700</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-800/60 pb-1.5">
+                                <span class="text-slate-400">Reserva de Sobrevivência</span>
+                                <span id="cost-reserva" class="font-mono font-bold text-white">€4.000</span>
+                            </div>
+                            <div class="flex justify-between pt-1">
+                                <span class="text-slate-400 font-medium">Ajuste de Margem</span>
+                                <span id="cost-buffer" class="font-mono font-bold text-brand-400">+€1.500</span>
+                            </div>
+                        </div>
+
+                        <!-- CONTAINER DE TOTAL -->
+                        <div class="bg-slate-950 p-4 rounded-xl border border-brand-500/20 text-center space-y-1 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-brand-500/5 pointer-events-none"></div>
+                            <span class="text-[10px] text-slate-400 font-mono uppercase tracking-wider block">Investimento Mínimo Estimado</span>
+                            <!-- Moeda Local (Equivalente a H1) -->
+                            <div id="cost-total" class="text-2xl font-black text-white">€11.500</div>
+                            <!-- Moeda Real R$ (Equivalente a H3) -->
+                            <div id="cost-brl" class="text-sm font-bold text-emerald-400 flex items-center justify-center gap-1.5 mt-0.5">
+                                <span class="text-xs text-slate-500 font-normal">Conversão:</span>
+                                <span id="cost-brl-val">R$ 71.875</span>
+                            </div>
+                            <!-- Live Exchange API Indicator -->
+                            <div id="api-status" class="text-[9px] text-slate-500 mt-2 block">
+                                <span class="inline-flex items-center gap-1">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+                                    Carregando cotações em tempo real...
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RASTREADOR DE METAS SE MANTERÁ INTEGRAL -->
+                <div id="action-planner" class="bg-slate-900/60 border border-slate-800 rounded-3xl p-4 sm:p-6 space-y-4">
+                    <div>
+                        <h3 class="text-base font-bold">Rastreador Semanal de Metas</h3>
+                        <p class="text-xs text-slate-400">Marque o progresso diário para alcançar 125 aplicações</p>
+                    </div>
+
+                    <!-- BARRA DE PROGRESSO -->
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between text-xs font-mono">
+                            <span class="text-slate-400">Progresso Geral</span>
+                            <span id="tracker-percentage" class="text-brand-500 font-bold">0%</span>
+                        </div>
+                        <div class="w-full bg-slate-950 rounded-full h-2.5 overflow-hidden border border-slate-800">
+                            <div id="tracker-bar" class="bg-gradient-to-r from-brand-600 to-brand-500 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <!-- DIAS E METAS DIÁRIAS -->
+                    <div class="space-y-2 text-xs">
+                        <label class="flex items-center justify-between p-2.5 bg-slate-950 rounded-xl border border-slate-800/60 cursor-pointer hover:bg-slate-900 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" onchange="updateProgress()" class="w-4 h-4 rounded border-slate-800 text-brand-500 focus:ring-brand-500 bg-slate-950">
+                                <div>
+                                    <span class="font-bold">Irlanda (Meta Diária)</span>
+                                    <p class="text-[10px] text-slate-400">Aplicar para 10 vagas/dia</p>
+                                </div>
+                            </div>
+                            <span class="font-mono text-[10px] bg-emerald-500/10 text-emerald-400 px-1.5 py-0.5 rounded font-bold">10 vagas</span>
+                        </label>
+                        <label class="flex items-center justify-between p-2.5 bg-slate-950 rounded-xl border border-slate-800/60 cursor-pointer hover:bg-slate-900 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" onchange="updateProgress()" class="w-4 h-4 rounded border-slate-800 text-brand-500 focus:ring-brand-500 bg-slate-950">
+                                <div>
+                                    <span class="font-bold">Austrália (Meta Diária)</span>
+                                    <p class="text-[10px] text-slate-400">Aplicar para 5 vagas/dia</p>
+                                </div>
+                            </div>
+                            <span class="font-mono text-[10px] bg-blue-500/10 text-blue-400 px-1.5 py-0.5 rounded font-bold">5 vagas</span>
+                        </label>
+                        <label class="flex items-center justify-between p-2.5 bg-slate-950 rounded-xl border border-slate-800/60 cursor-pointer hover:bg-slate-900 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" onchange="updateProgress()" class="w-4 h-4 rounded border-slate-800 text-brand-500 focus:ring-brand-500 bg-slate-950">
+                                <div>
+                                    <span class="font-bold">Nova Zelândia (Meta Diária)</span>
+                                    <p class="text-[10px] text-slate-400">Aplicar para 5 vagas em credenciadas</p>
+                                </div>
+                            </div>
+                            <span class="font-mono text-[10px] bg-blue-500/10 text-blue-400 px-1.5 py-0.5 rounded font-bold">5 vagas</span>
+                        </label>
+                        <label class="flex items-center justify-between p-2.5 bg-slate-950 rounded-xl border border-slate-800/60 cursor-pointer hover:bg-slate-900 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" onchange="updateProgress()" class="w-4 h-4 rounded border-slate-800 text-brand-500 focus:ring-brand-500 bg-slate-950">
+                                <div>
+                                    <span class="font-bold">Canadá (Meta Diária)</span>
+                                    <p class="text-[10px] text-slate-400">Aplicar para 5 vagas no Job Bank (LMIA)</p>
+                                </div>
+                            </div>
+                            <span class="font-mono text-[10px] bg-blue-500/10 text-blue-400 px-1.5 py-0.5 rounded font-bold">5 vagas</span>
+                        </label>
+                    </div>
+
+                    <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-[10px] text-slate-400 leading-relaxed">
+                        💡 <strong>Conselho de Execução:</strong> Execute estas candidaturas de segunda a sexta para fechar o ciclo semanal de 125 contatos qualificados. Não dependa unicamente de candidaturas simplificadas pelo LinkedIn.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- PLAYBOOK TÁTICO & FOCALIZADO -->
+        <div class="bg-slate-900/60 border border-slate-800 rounded-3xl p-4 sm:p-6 space-y-6">
+            <div>
+                <h2 class="text-lg font-bold">Plano Tático de Execução (2026)</h2>
+                <p class="text-xs text-slate-400">A sua esteira de desenvolvimento pessoal e busca de emprego internacional</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- CERTIFICAÇÕES E ESTUDOS -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <span class="w-1.5 h-6 bg-brand-500 rounded-full"></span>
+                        <h3 class="text-sm font-bold">Preparação Curricular</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs flex justify-between items-start gap-3">
+                            <div class="space-y-1">
+                                <div class="font-bold text-white">ADS &amp; Graduação</div>
+                                <p class="text-slate-400 text-[10px]">Avançar para conclusão ou revalidação se possível.</p>
+                            </div>
+                            <span class="text-[9px] font-mono bg-amber-500/15 text-amber-500 border border-amber-500/20 px-1.5 py-0.5 rounded uppercase">Pilar Base</span>
+                        </div>
+                        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs flex justify-between items-start gap-3">
+                            <div class="space-y-1">
+                                <div class="font-bold text-white">Microsoft AZ-900</div>
+                                <p class="text-slate-400 text-[10px]">Certificação em conceitos fundamentais do Microsoft Azure.</p>
+                            </div>
+                            <span class="text-[9px] font-mono bg-blue-500/15 text-blue-500 border border-blue-500/20 px-1.5 py-0.5 rounded uppercase">Alta Demanda</span>
+                        </div>
+                        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs flex justify-between items-start gap-3">
+                            <div class="space-y-1">
+                                <div class="font-bold text-white">Microsoft MS-900</div>
+                                <p class="text-slate-400 text-[10px]">Essencial para analistas de Service Desk moderno (M365).</p>
+                            </div>
+                            <span class="text-[9px] font-mono bg-blue-500/15 text-blue-500 border border-blue-500/20 px-1.5 py-0.5 rounded uppercase">Foco Suporte</span>
+                        </div>
+                        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs flex justify-between items-start gap-3">
+                            <div class="space-y-1">
+                                <div class="font-bold text-white">ITIL v4 / CompTIA A+</div>
+                                <p class="text-slate-400 text-[10px]">Boas práticas de governança e suporte de hardware/SO.</p>
+                            </div>
+                            <span class="text-[9px] font-mono bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded uppercase">Opcional</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COPIADOR DE PALAVRAS CHAVE -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <span class="w-1.5 h-6 bg-emerald-500 rounded-full"></span>
+                        <h3 class="text-sm font-bold">Termos de Busca Estratégicos</h3>
+                    </div>
+                    <p class="text-xs text-slate-400">Copie os melhores termos de triagem de vagas para colar nos buscadores:</p>
+                    
+                    <div class="space-y-2 text-xs">
+                        <div class="flex items-center justify-between p-2 bg-slate-950 rounded-lg border border-slate-800/80">
+                            <span class="font-mono text-slate-300">"Visa Sponsorship"</span>
+                            <button onclick="copyToClipboard('\'Visa Sponsorship\'')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-[10px] font-bold rounded transition-colors text-slate-300">Copiar</button>
+                        </div>
+                        <div class="flex items-center justify-between p-2 bg-slate-950 rounded-lg border border-slate-800/80">
+                            <span class="font-mono text-slate-300">"Accredited Employer"</span>
+                            <button onclick="copyToClipboard('\'Accredited Employer\'')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-[10px] font-bold rounded transition-colors text-slate-300">Copiar</button>
+                        </div>
+                        <div class="flex items-center justify-between p-2 bg-slate-950 rounded-lg border border-slate-800/80">
+                            <span class="font-mono text-slate-300">"General Employment Permit"</span>
+                            <button onclick="copyToClipboard('\'General Employment Permit\'')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-[10px] font-bold rounded transition-colors text-slate-300">Copiar</button>
+                        </div>
+                        <div class="flex items-center justify-between p-2 bg-slate-950 rounded-lg border border-slate-800/80">
+                            <span class="font-mono text-slate-300">"LMIA Available"</span>
+                            <button onclick="copyToClipboard('\'LMIA Available\'')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-[10px] font-bold rounded transition-colors text-slate-300">Copiar</button>
+                        </div>
+                        <div class="flex items-center justify-between p-2 bg-slate-950 rounded-lg border border-slate-800/80">
+                            <span class="font-mono text-slate-300">"IT Support" / "Service Desk"</span>
+                            <button onclick="copyToClipboard('\'IT Support\' \'Service Desk\'')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-[10px] font-bold rounded transition-colors text-slate-300">Copiar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PORTAIS RECOMENDADOS -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <span class="w-1.5 h-6 bg-brand-500 rounded-full"></span>
+                        <h3 class="text-sm font-bold">Portais por Destino</h3>
+                    </div>
+                    
+                    <div class="space-y-3.5 text-xs">
+                        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
+                            <div class="font-bold text-white mb-1 flex items-center justify-between">
+                                <span>🇮🇪 Irlanda</span>
+                                <span class="text-[9px] text-slate-400">Local Principal</span>
+                            </div>
+                            <div class="flex flex-wrap gap-1.5 mt-2">
+                                <a href="https://www.irishjobs.ie/" target="_blank" rel="noopener noreferrer" class="bg-slate-900 hover:bg-slate-800 hover:text-white border border-slate-800 hover:border-slate-700 px-2.5 py-1 rounded text-[10px] text-slate-300 transition-colors duration-200">IrishJobs.ie</a>
+                                <a href="https://www.jobs.ie/" target="_blank" rel="noopener noreferrer" class="bg-slate-900 hover:bg-slate-800 hover:text-white border border-slate-800 hover:border-slate-700 px-2.5 py-1 rounded text-[10px] text-slate-300 transition-colors duration-200">Jobs.ie</a>
+                                <a href="https://ie.indeed.com/" target="_blank" rel="noopener noreferrer" class="bg-slate-900 hover:bg-slate-800 hover:text-white border border-slate-800 hover:border-slate-700 px-2.5 py-1 rounded text-[10px] text-slate-300 transition-colors duration-200">Indeed IE</a>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
+                            <div class="font-bold text-white mb-1 flex items-center justify-between">
+                                <span>🇦🇺 &amp; 🇳🇿 Oceania</span>
+                                <span class="text-[9px] text-slate-400">Grandes Portais</span>
+                            </div>
+                            <div class="flex flex-wrap gap-1.5 mt-2">
+                                <a href="https://au.seek.com/" target="_blank" rel="noopener noreferrer" class="bg-slate-900 hover:bg-slate-800 hover:text-white border border-slate-800 hover:border-slate-700 px-2.5 py-1 rounded text-[10px] text-slate-300 transition-colors duration-200">Seek AU</a>
+                                <a href="https://nz.seek.com/" target="_blank" rel="noopener noreferrer" class="bg-slate-900 hover:bg-slate-800 hover:text-white border border-slate-800 hover:border-slate-700 px-2.5 py-1 rounded text-[10px] text-slate-300 transition-colors duration-200">Seek NZ</a>
+                                <a href="https://www.trademe.co.nz/a/jobs?srsltid=AfmBOoqSaQyXjHPu-S1c2Da6cDmS4pJc83ECN9v1Z8pGnwc_dlU18VRF" target="_blank" rel="noopener noreferrer" class="bg-slate-900 hover:bg-slate-800 hover:text-white border border-slate-800 hover:border-slate-700 px-2.5 py-1 rounded text-[10px] text-slate-300 transition-colors duration-200">Trade Me Jobs</a>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
+                            <div class="font-bold text-white mb-1 flex items-center justify-between">
+                                <span>🇨🇦 Canadá</span>
+                                <span class="text-[9px] text-slate-400">Banco de Empregos</span>
+                            </div>
+                            <div class="flex flex-wrap gap-1.5 mt-2">
+                                <a href="https://www.jobbank.gc.ca/home" target="_blank" rel="noopener noreferrer" class="bg-slate-900 hover:bg-slate-800 hover:text-white border border-slate-800 hover:border-slate-700 px-2.5 py-1 rounded text-[10px] text-slate-300 transition-colors duration-200">Job Bank Canada</a>
+                                <a href="https://ca.indeed.com/" target="_blank" rel="noopener noreferrer" class="bg-slate-900 hover:bg-slate-800 hover:text-white border border-slate-800 hover:border-slate-700 px-2.5 py-1 rounded text-[10px] text-slate-300 transition-colors duration-200">Indeed Canada</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- PAINEL DE MONITORAMENTO DE GRANDES EMPRESAS -->
+        <div class="bg-slate-900/60 border border-slate-800 rounded-3xl p-4 sm:p-6 space-y-4">
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+                <div>
+                    <h3 class="text-base font-bold">Empresas Recomendadas &amp; Monitoramento Ativo</h3>
+                    <p class="text-xs text-slate-400">Monitore, defina os cargos de aplicação e controle o progresso do funil diretamente de cada portal corporativo</p>
+                </div>
+                
+                <!-- Status Tracker Global -->
+                <div class="flex flex-wrap items-center gap-4 text-xs font-mono bg-slate-950 p-3 rounded-xl border border-slate-800/80">
+                    <div class="flex items-center gap-2 border-r border-slate-800 pr-3">
+                        <span class="text-slate-500">Aplicado:</span>
+                        <span id="company-stats-applied" class="text-blue-400 font-bold">0</span>
+                    </div>
+                    <div class="flex items-center gap-2 border-r border-slate-800 pr-3">
+                        <span class="text-slate-500">Entrevista:</span>
+                        <span id="company-stats-interview" class="text-purple-400 font-bold">0</span>
+                    </div>
+                    <div class="flex items-center gap-2 border-r border-slate-800 pr-3">
+                        <span class="text-slate-500">Aprovado:</span>
+                        <span id="company-stats-offered" class="text-emerald-400 font-bold">0</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-slate-500">Taxa de Ação:</span>
+                        <span id="company-progress-percent" class="text-white font-bold">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mini Progress Bar -->
+            <div class="w-full bg-slate-950 rounded-full h-1 overflow-hidden border border-slate-800/40">
+                <div id="company-progress-bar" class="bg-gradient-to-r from-emerald-500 to-brand-500 h-1 rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mt-4">
+                
+                <!-- CARD APPLE -->
+                <div class="bg-slate-950/40 p-4 rounded-2xl border border-slate-800/80 relative overflow-hidden group hover:border-slate-700 transition-all flex flex-col justify-between min-h-[250px]">
+                    <!-- Apple Centered Subtle Watermark Logo (Opacity adjusted to premium 8% -> 15%) -->
+                    <div class="absolute inset-0 flex items-center justify-center opacity-[0.08] group-hover:opacity-[0.15] pointer-events-none transition-all duration-300 z-0">
+                        <svg class="w-36 h-36" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-.1 3.07-.3 1.25-.8 2-.2 1.4 1s-.5 1.1-1 1.5zm1.5-11.83a4.13 4.13 0 001.03-3c-.92.05-1.95.58-2.58 1.41a3.84 3.84 0 00-1.01 2.92c1.03.07 2.01-.48 2.56-1.33z"/>
+                        </svg>
+                    </div>
+                    
+                    <div class="relative z-10 space-y-3">
+                        <div class="flex justify-between items-start">
+                            <span class="text-[9px] font-bold text-emerald-400 uppercase bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">🇮🇪 Irlanda</span>
+                            <span id="status-badge-apple" class="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider bg-slate-800 text-slate-400 border border-slate-700/60">Não Aplicado</span>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-black text-white group-hover:text-brand-500 transition-colors">Apple Careers</h4>
+                            <p class="text-[10px] text-slate-400">Portal de Oportunidades</p>
+                        </div>
+                        <div class="space-y-1.5">
+                            <div>
+                                <label class="text-[9px] text-slate-500 uppercase font-mono block mb-0.5">Cargo Pretendido</label>
+                                <input type="text" id="role-apple" placeholder="Ex: IT Support Analyst" class="w-full bg-slate-900 border border-slate-800 rounded px-1.5 py-0.5 text-[10px] text-slate-200 focus:outline-none focus:border-brand-500">
+                            </div>
+                            <div>
+                                <label class="text-[9px] text-slate-500 uppercase font-mono block mb-0.5">Data de Envio</label>
+                                <input type="date" id="date-apple" class="w-full bg-slate-900 border border-slate-800 rounded px-1.5 py-0.5 text-[10px] text-slate-200 focus:outline-none focus:border-brand-500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative z-10 pt-3 border-t border-slate-800/60 mt-3 space-y-2">
+                        <select onchange="changeCompanyStatus('apple', this.value)" class="w-full bg-slate-900 border border-slate-800 rounded px-1.5 py-1 text-[11px] focus:outline-none text-slate-300">
+                            <option value="Não Aplicado">Não Aplicado</option>
+                            <option value="Aplicado">Aplicado</option>
+                            <option value="Entrevista">Entrevista</option>
+                            <option value="Oferecido">Oferecido</option>
+                            <option value="Negado">Negado</option>
+                        </select>
+                        <a href="https://www.apple.com/jobs/ie/" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-1 bg-slate-800 hover:bg-slate-700 text-white rounded text-[10px] font-bold transition-all">Ver Vagas ↗</a>
+                    </div>
+                </div>
+
+                <!-- CARD DELL -->
+                <div class="bg-slate-950/40 p-4 rounded-2xl border border-slate-800/80 relative overflow-hidden group hover:border-slate-700 transition-all flex flex-col justify-between min-h-[250px]">
+                    <!-- Dell Centered Subtle Watermark Logo (Opacity adjusted to premium 8% -> 15%) -->
+                    <div class="absolute inset-0 flex items-center justify-center opacity-[0.08] group-hover:opacity-[0.15] pointer-events-none transition-all duration-300 z-0">
+                        <svg class="w-36 h-36 text-slate-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" />
+                            <text x="12" y="15" font-size="7" font-weight="900" font-family="sans-serif" text-anchor="middle" fill="currentColor" stroke="none">DELL</text>
+                        </svg>
+                    </div>
+                    
+                    <div class="relative z-10 space-y-3">
+                        <div class="flex justify-between items-start">
+                            <span class="text-[9px] font-bold text-emerald-400 uppercase bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">🇮🇪 Irlanda</span>
+                            <span id="status-badge-dell" class="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider bg-slate-800 text-slate-400 border border-slate-700/60">Não Aplicado</span>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-black text-white group-hover:text-brand-500 transition-colors">Dell Careers</h4>
+                            <p class="text-[10px] text-slate-400">Portal de Oportunidades</p>
+                        </div>
+                        <div class="space-y-1.5">
+                            <div>
+                                <label class="text-[9px] text-slate-500 uppercase font-mono block mb-0.5">Cargo Pretendido</label>
+                                <input type="text" id="role-dell" placeholder="Ex: Technical Support" class="w-full bg-slate-900 border border-slate-800 rounded px-1.5 py-0.5 text-[10px] text-slate-200 focus:outline-none focus:border-brand-500">
+                            </div>
+                            <div>
+                                <label class="text-[9px] text-slate-500 uppercase font-mono block mb-0.5">Data de Envio</label>
+                                <input type="date" id="date-dell" class="w-full bg-slate-900 border border-slate-800 rounded px-1.5 py-0.5 text-[10px] text-slate-200 focus:outline-none focus:border-brand-500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative z-10 pt-3 border-t border-slate-800/60 mt-3 space-y-2">
+                        <select onchange="changeCompanyStatus('dell', this.value)" class="w-full bg-slate-900 border border-slate-800 rounded px-1.5 py-1 text-[11px] focus:outline-none text-slate-300">
+                            <option value="Não Aplicado">Não Aplicado</option>
+                            <option value="Aplicado">Aplicado</option>
+                            <option value="Entrevista">Entrevista</option>
+                            <option value="Oferecido">Oferecido</option>
+                            <option value="Negado">Negado</option>
+                        </select>
+                        <a href="https://jobs.dell.com/" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-1 bg-slate-800 hover:bg-slate-700 text-white rounded text-[10px] font-bold transition-all">Ver Vagas ↗</a>
+                    </div>
+                </div>
+
+                <!-- CARD ACCENTURE -->
+                <div class="bg-slate-950/40 p-4 rounded-2xl border border-slate-800/80 relative overflow-hidden group hover:border-slate-700 transition-all flex flex-col justify-between min-h-[250px]">
+                    <!-- Accenture Centered Subtle Watermark Logo (Opacity adjusted to premium 8% -> 15%) -->
+                    <div class="absolute inset-0 flex items-center justify-center opacity-[0.08] group-hover:opacity-[0.15] pointer-events-none transition-all duration-300 z-0">
+                        <svg class="w-36 h-36" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 12L5 3v6.5L13.5 12 5 15.5V21z"/>
+                        </svg>
+                    </div>
+                    
+                    <div class="relative z-10 space-y-3">
+                        <div class="flex justify-between items-start">
+                            <span class="text-[9px] font-bold text-emerald-400 uppercase bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">🇮🇪 Irlanda</span>
+                            <span id="status-badge-accenture" class="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider bg-slate-800 text-slate-400 border border-slate-700/60">Não Aplicado</span>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-black text-white group-hover:text-brand-500 transition-colors">Accenture Careers</h4>
+                            <p class="text-[10px] text-slate-400">Portal de Oportunidades</p>
+                        </div>
+                        <div class="space-y-1.5">
+                            <div>
+                                <label class="text-[9px] text-slate-500 uppercase font-mono block mb-0.5">Cargo Pretendido</label>
+                                <input type="text" id="role-accenture" placeholder="Ex: Service Desk Analyst" class="w-full bg-slate-900 border border-slate-800 rounded px-1.5 py-0.5 text-[10px] text-slate-200 focus:outline-none focus:border-brand-500">
+                            </div>
+                            <div>
+                                <label class="text-[9px] text-slate-500 uppercase font-mono block mb-0.5">Data de Envio</label>
+                                <input type="date" id="date-accenture" class="w-full bg-slate-900 border border-slate-800 rounded px-1.5 py-0.5 text-[10px] text-slate-200 focus:outline-none focus:border-brand-500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative z-10 pt-3 border-t border-slate-800/60 mt-3 space-y-2">
+                        <select onchange="changeCompanyStatus('accenture', this.value)" class="w-full bg-slate-900 border border-slate-800 rounded px-1.5 py-1 text-[11px] focus:outline-none text-slate-300">
+                            <option value="Não Aplicado">Não Aplicado</option>
+                            <option value="Aplicado">Aplicado</option>
+                            <option value="Entrevista">Entrevista</option>
+                            <option value="Oferecido">Oferecido</option>
+                            <option value="Negado">Negado</option>
+                        </select>
+                        <a href="https://www.accenture.com/ie-en/careers" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-1 bg-slate-800 hover:bg-slate-700 text-white rounded text-[10px] font-bold transition-all">Ver Vagas ↗</a>
+                    </div>
+                </div>
+
+                <!-- CARD MICROSOFT -->
+                <div class="bg-slate-950/40 p-4 rounded-2xl border border-slate-800/80 relative overflow-hidden group hover:border-slate-700 transition-all flex flex-col justify-between min-h-[250px]">
+                    <!-- Microsoft Centered Subtle Watermark Logo (Opacity adjusted to premium 8% -> 15%) -->
+                    <div class="absolute inset-0 flex items-center justify-center opacity-[0.08] group-hover:opacity-[0.15] pointer-events-none transition-all duration-300 z-0">
+                        <svg class="w-32 h-32" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 2h9.5v9.5H2zm10.5 0H22v9.5h-9.5zM2 12.5h9.5V22H2zm10.5 0H22V22h-9.5z"/>
+                        </svg>
+                    </div>
+                    
+                    <div class="relative z-10 space-y-3">
+                        <div class="flex justify-between items-start">
+                            <span class="text-[9px] font-bold text-emerald-400 uppercase bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">🇮🇪 Irlanda</span>
+                            <span id="status-badge-microsoft" class="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider bg-slate-800 text-slate-400 border border-slate-700/60">Não Aplicado</span>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-black text-white group-hover:text-brand-500 transition-colors">Microsoft Careers</h4>
+                            <p class="text-[10px] text-slate-400">Portal de Oportunidades</p>
+                        </div>
+                        <div class="space-y-1.5">
+                            <div>
+                                <label class="text-[9px] text-slate-500 uppercase font-mono block mb-0.5">Cargo Pretendido</label>
+                                <input type="text" id="role-microsoft" placeholder="Ex: Cloud Support Eng" class="w-full bg-slate-900 border border-slate-800 rounded px-1.5 py-0.5 text-[10px] text-slate-200 focus:outline-none focus:border-brand-500">
+                            </div>
+                            <div>
+                                <label class="text-[9px] text-slate-500 uppercase font-mono block mb-0.5">Data de Envio</label>
+                                <input type="date" id="date-microsoft" class="w-full bg-slate-900 border border-slate-800 rounded px-1.5 py-0.5 text-[10px] text-slate-200 focus:outline-none focus:border-brand-500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative z-10 pt-3 border-t border-slate-800/60 mt-3 space-y-2">
+                        <select onchange="changeCompanyStatus('microsoft', this.value)" class="w-full bg-slate-900 border border-slate-800 rounded px-1.5 py-1 text-[11px] focus:outline-none text-slate-300">
+                            <option value="Não Aplicado">Não Aplicado</option>
+                            <option value="Aplicado">Aplicado</option>
+                            <option value="Entrevista">Entrevista</option>
+                            <option value="Oferecido">Oferecido</option>
+                            <option value="Negado">Negado</option>
+                        </select>
+                        <a href="https://careers.microsoft.com/" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-1 bg-slate-800 hover:bg-slate-700 text-white rounded text-[10px] font-bold transition-all">Ver Vagas ↗</a>
+                    </div>
+                </div>
+
+                <!-- CARD AMAZON -->
+                <div class="bg-slate-950/40 p-4 rounded-2xl border border-slate-800/80 relative overflow-hidden group hover:border-slate-700 transition-all flex flex-col justify-between min-h-[250px]">
+                    <!-- Amazon Centered Subtle Watermark Smile Logo (Opacity adjusted to premium 8% -> 15%) -->
+                    <div class="absolute inset-0 flex items-center justify-center opacity-[0.08] group-hover:opacity-[0.15] pointer-events-none transition-all duration-300 z-0">
+                        <svg class="w-36 h-36" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.15 16.51c-4.4 2.52-10.3 2.52-14.3-.2-1.52-1-.9-3.2.9-2 3.6 2.44 9.15 2.1 13-.3 1.25-.8 2-.2 1.4 1s-.5 1.1-1 1.5zm.9-2.1c1-.3 1.9-.3 1.9-.3s-.1.9-.8 1.6c-.7.7-1.5.4-1.5.4s.1-.7.4-1.7z"/>
+                        </svg>
+                    </div>
+                    
+                    <div class="relative z-10 space-y-3">
+                        <div class="flex justify-between items-start">
+                            <span class="text-[9px] font-bold text-emerald-400 uppercase bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">🇮🇪 Irlanda</span>
+                            <span id="status-badge-amazon" class="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider bg-slate-800 text-slate-400 border border-slate-700/60">Não Aplicado</span>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-black text-white group-hover:text-brand-500 transition-colors">Amazon Jobs</h4>
+                            <p class="text-[10px] text-slate-400">Portal de Oportunidades</p>
+                        </div>
+                        <div class="space-y-1.5">
+                            <div>
+                                <label class="text-[9px] text-slate-500 uppercase font-mono block mb-0.5">Cargo Pretendido</label>
+                                <input type="text" id="role-amazon" placeholder="Ex: IT Support Associate" class="w-full bg-slate-900 border border-slate-800 rounded px-1.5 py-0.5 text-[10px] text-slate-200 focus:outline-none focus:border-brand-500">
+                            </div>
+                            <div>
+                                <label class="text-[9px] text-slate-500 uppercase font-mono block mb-0.5">Data de Envio</label>
+                                <input type="date" id="date-amazon" class="w-full bg-slate-900 border border-slate-800 rounded px-1.5 py-0.5 text-[10px] text-slate-200 focus:outline-none focus:border-brand-500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative z-10 pt-3 border-t border-slate-800/60 mt-3 space-y-2">
+                        <select onchange="changeCompanyStatus('amazon', this.value)" class="w-full bg-slate-900 border border-slate-800 rounded px-1.5 py-1 text-[11px] focus:outline-none text-slate-300">
+                            <option value="Não Aplicado">Não Aplicado</option>
+                            <option value="Aplicado">Aplicado</option>
+                            <option value="Entrevista">Entrevista</option>
+                            <option value="Oferecido">Oferecido</option>
+                            <option value="Negado">Negado</option>
+                        </select>
+                        <a href="https://www.amazon.jobs/" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-1 bg-slate-800 hover:bg-slate-700 text-white rounded text-[10px] font-bold transition-all">Ver Vagas ↗</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER / RODAPÉ -->
+    <footer class="mt-auto border-t border-slate-800 bg-slate-900/40 py-6 text-center text-xs text-slate-500">
+        <p>© 2026 MA // Migration Analytics. Planeado sob medida para o seu plano de carreira global.</p>
+    </footer>
+
+    <!-- INTERATIVE SCRIPTS -->
+    <script>
+        // Tab Data Storage
+        const tabs = ['irlanda', 'nz', 'australia', 'canada'];
+        
+        // Base Cost Database calibrated strictly to user's specified minimums (with initial default fallbacks)
+        const costDatabase = {
+            irlanda: {
+                currency: 'EUR',
+                symbol: '€',
+                rateToBrl: 6.25, // Taxa de conversão de contingência EUR -> BRL
+                vistos: 1300,
+                passagens: 1000,
+                instalacao: 3700,
+                reserva: 4000  // Soma total base: € 10.000
+            },
+            nz: {
+                currency: 'NZD',
+                symbol: 'NZ$',
+                rateToBrl: 3.55, // Taxa de conversão de contingência NZD -> BRL
+                vistos: 2500,
+                passagens: 3500,
+                instalacao: 7000,
+                reserva: 12000 // Soma total base: NZ$ 25.000
+            },
+            australia: {
+                currency: 'AUD',
+                symbol: 'AU$',
+                rateToBrl: 3.82, // Taxa de conversão de contingência AUD -> BRL
+                vistos: 4500,
+                passagens: 2500,
+                instalacao: 8000,
+                reserva: 15000 // Soma total base: AU$ 30.000
+            },
+            canada: {
+                currency: 'CAD',
+                symbol: 'CA$',
+                rateToBrl: 4.10, // Taxa de conversão de contingência CAD -> BRL
+                vistos: 2500,
+                passagens: 2000,
+                instalacao: 5500,
+                reserva: 10000 // Soma total base: CA$ 20.000
+            }
+        };
+
+        // Real-Time Currency Live Fetcher with fallback logic
+        async function fetchExchangeRates() {
+            const apiStatusEl = document.getElementById('api-status');
+            try {
+                // Fetching reliable, daily-updated, free global API sourced from ExchangeRate-API
+                const response = await fetch('https://open.er-api.com/v6/latest/BRL');
+                if (!response.ok) throw new Error('CORS or Network issue');
+                const data = await response.json();
+                
+                if (data && data.rates) {
+                    // API gives "1 BRL = X foreign_currency".
+                    // To get "1 foreign_currency = Y BRL", we do: 1 / X
+                    costDatabase.irlanda.rateToBrl = 1 / data.rates.EUR;
+                    costDatabase.nz.rateToBrl = 1 / data.rates.NZD;
+                    costDatabase.australia.rateToBrl = 1 / data.rates.AUD;
+                    costDatabase.canada.rateToBrl = 1 / data.rates.CAD;
+                    
+                    if (apiStatusEl) {
+                        apiStatusEl.innerHTML = `
+                            <span class="inline-flex items-center gap-1.5 text-emerald-400 font-semibold">
+                                <span class="relative flex h-2 w-2">
+                                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                  <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                                </span>
+                                Câmbio Comercial Atualizado (Tempo Real)
+                            </span>`;
+                    }
+                    // Recalculate based on newly pulled rates
+                    updateCalculator();
+                }
+            } catch (error) {
+                console.warn('Falha ao obter cotações da API. Mantendo valores estimados de planejamento local.', error);
+                if (apiStatusEl) {
+                    apiStatusEl.innerHTML = `
+                        <span class="inline-flex items-center gap-1 text-amber-500">
+                            <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                            Taxas de Câmbio de Planejamento (Offline)
+                        </span>`;
+                }
+            }
+        }
+
+        // Active Tab Switcher
+        function switchTab(activeId) {
+            tabs.forEach(tab => {
+                const tabBtn = document.getElementById(`tab-${tab}`);
+                const tabContent = document.getElementById(`content-${tab}`);
+                
+                if (tab === activeId) {
+                    if (activeId === 'irlanda') {
+                        tabBtn.className = "tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
+                    } else if (activeId === 'nz' || activeId === 'australia') {
+                        tabBtn.className = "tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all bg-blue-500/10 text-blue-400 border border-blue-500/20";
+                    } else {
+                        tabBtn.className = "tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all bg-slate-800 text-white border border-slate-700";
+                    }
+                    tabContent.classList.remove('hidden');
+                } else {
+                    tabBtn.className = "tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800 transition-all";
+                    tabContent.classList.add('hidden');
+                }
+            });
+
+            // Sync selector option
+            const countrySelector = document.getElementById('country-selector');
+            if (countrySelector.value !== activeId) {
+                countrySelector.value = activeId;
+                updateCalculator();
+            }
+        }
+
+        // Dynamic Calculations
+        function updateCalculator() {
+            const country = document.getElementById('country-selector').value;
+            const bufferPercentage = parseInt(document.getElementById('buffer-slider').value);
+            
+            // Render emergency value progress
+            document.getElementById('buffer-val').innerText = `+${bufferPercentage}%`;
+
+            // Data mapping
+            const data = costDatabase[country];
+            const sym = data.symbol;
+            
+            // Base summation (Guaranteed minimums)
+            const baseSum = data.vistos + data.passagens + data.instalacao + data.reserva;
+            const bufferAmount = Math.round(baseSum * (bufferPercentage / 100));
+            const total = baseSum + bufferAmount;
+            
+            // Convert to BRL (Real) using dynamic rate
+            const totalBrl = Math.round(total * data.rateToBrl);
+
+            // Render sub-items with specific local symbols
+            document.getElementById('cost-vistos').innerText = `${sym} ${data.vistos.toLocaleString('pt-BR')}`;
+            document.getElementById('cost-passagens').innerText = `${sym} ${data.passagens.toLocaleString('pt-BR')}`;
+            document.getElementById('cost-instalacao').innerText = `${sym} ${data.instalacao.toLocaleString('pt-BR')}`;
+            document.getElementById('cost-reserva').innerText = `${sym} ${data.reserva.toLocaleString('pt-BR')}`;
+            document.getElementById('cost-buffer').innerText = `+${sym} ${bufferAmount.toLocaleString('pt-BR')}`;
+            
+            // Output Display
+            document.getElementById('cost-total').innerText = `${sym} ${total.toLocaleString('pt-BR')}`;
+            document.getElementById('cost-brl-val').innerText = `R$ ${totalBrl.toLocaleString('pt-BR')}`;
+        }
+
+        // Metas Progress Tracker
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('#action-planner input[type="checkbox"]');
+            let checkedCount = 0;
+            
+            checkboxes.forEach(box => {
+                if (box.checked) checkedCount++;
+            });
+
+            const percentage = Math.round((checkedCount / checkboxes.length) * 100);
+            
+            document.getElementById('tracker-percentage').innerText = `${percentage}%`;
+            document.getElementById('tracker-bar').style.width = `${percentage}%`;
+        }
+
+        // Company Live Tracker State & logic
+        const companyStates = {
+            apple: { status: 'Não Aplicado' },
+            dell: { status: 'Não Aplicado' },
+            accenture: { status: 'Não Aplicado' },
+            microsoft: { status: 'Não Aplicado' },
+            amazon: { status: 'Não Aplicado' }
+        };
+
+        function changeCompanyStatus(companyId, newStatus) {
+            companyStates[companyId].status = newStatus;
+            
+            // Update color styles dynamically for specific badges
+            const badge = document.getElementById(`status-badge-${companyId}`);
+            if (badge) {
+                badge.innerText = newStatus;
+                
+                // Base structure
+                const baseClass = "px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider transition-all duration-200 ";
+                if (newStatus === 'Não Aplicado') {
+                    badge.className = baseClass + "bg-slate-800 text-slate-400 border border-slate-700/60";
+                } else if (newStatus === 'Aplicado') {
+                    badge.className = baseClass + "bg-blue-500/10 text-blue-400 border border-blue-500/20";
+                } else if (newStatus === 'Entrevista') {
+                    badge.className = baseClass + "bg-purple-500/10 text-purple-400 border border-purple-500/20";
+                } else if (newStatus === 'Oferecido') {
+                    badge.className = baseClass + "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 animate-pulse";
+                } else if (newStatus === 'Negado') {
+                    badge.className = baseClass + "bg-red-500/10 text-red-400 border border-red-500/20";
+                }
+            }
+            recalculateCompanyStats();
+        }
+
+        function recalculateCompanyStats() {
+            let applied = 0;
+            let interview = 0;
+            let offered = 0;
+            let totalActive = 0;
+
+            Object.keys(companyStates).forEach(key => {
+                const status = companyStates[key].status;
+                if (status === 'Aplicado') applied++;
+                if (status === 'Entrevista') interview++;
+                if (status === 'Oferecido') offered++;
+                if (status !== 'Não Aplicado') totalActive++;
+            });
+
+            // Render dashboard counts
+            document.getElementById('company-stats-applied').innerText = applied;
+            document.getElementById('company-stats-interview').innerText = interview;
+            document.getElementById('company-stats-offered').innerText = offered;
+            
+            // Render dynamic percentage and progress bar
+            const activePercentage = Math.round((totalActive / 5) * 100);
+            document.getElementById('company-progress-percent').innerText = `${activePercentage}%`;
+            document.getElementById('company-progress-bar').style.width = `${activePercentage}%`;
+        }
+
+        // Fast Clip Copy Helper
+        function copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showTemporaryToast(`Copiado: ${text}`);
+                }
+            } catch (err) {
+                console.error('Falha ao copiar termo.', err);
+            }
+            
+            document.body.removeChild(textarea);
+        }
+
+        // Temporary toast message notifier
+        function showTemporaryToast(message) {
+            const existingToast = document.getElementById('custom-toast');
+            if (existingToast) existingToast.remove();
+
+            const toast = document.createElement('div');
+            toast.id = 'custom-toast';
+            toast.className = "fixed bottom-5 right-5 z-50 bg-slate-900 border border-brand-500 text-white text-xs px-4 py-2.5 rounded-xl shadow-2xl transition-all duration-300 animate-bounce";
+            toast.innerText = message;
+            
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 2500);
+        }
+
+        // Initial launch setups
+        window.onload = function() {
+            updateCalculator();
+            updateProgress();
+            recalculateCompanyStats();
+            fetchExchangeRates(); // Dynamic API Fetch
+        };
+    </script>
+</body>
+</html>
